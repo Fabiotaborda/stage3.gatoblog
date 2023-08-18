@@ -1,0 +1,256 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-family: "Mulish", sans-serif;
+}
+
+:root {
+  font-size: 62.5%;
+
+  --hue:50;
+  --white: hsl(0, 0%, 100%);
+  --Background-blue900: hsl(var(--hue), 91%, 25%);
+  --platform-aliases-background: hsl(var(--hue), 60%, 30%);
+  --platform-aliases-shape-principal: hsl(var(--hue), 60%, 30%);
+  --input-background: hsla(0, 0%, 100%, 0.2);
+}
+
+body {
+  background: var(--Background-blue900);
+}
+
+.container {
+  max-width: 43rem;
+  margin: 0 auto;
+}
+
+#app {
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  height: 100vh;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 1.2rem 2.8rem;
+  gap: 2.6rem;
+
+  --start-y: -100%;
+  animation: move .5s;
+}
+
+.input-wrapper label {
+  width: 1px;
+  height: 1px;
+
+  overflow: hidden;
+  position: absolute;
+}
+
+.input-wrapper input {
+  border-radius: 4px;
+  border: none;
+  background: var(--input-background);
+
+  padding: 1.2rem 1.6rem 1.2rem 1.4rem;
+  color: var(--white);
+  font-size: 1.6rem;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  line-height: 100%;
+}
+::placeholder {
+  color: var(--white);
+}
+
+main {
+  background: var(--white);
+  overflow-y: scroll;
+}
+
+#primary {
+  animation: movex 0.6s;
+}
+
+figure {
+  --delay: .2s;
+  animation: appear .4s var(--delay) backwards;
+}
+
+#primary figcaption {
+  padding-left: 2.2rem;
+}
+
+#one {
+  width: 100%;
+  object-fit: cover;
+}
+
+main h1 {
+  color: var(--platform-aliases-shape-principal);
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 160%;
+  padding: 2.4rem 0 0;
+}
+
+#like,
+#dislike {
+  padding: 2rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: var(--Background-blue900);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#feedback {
+  display: flex;
+  gap: 1.2rem;
+  padding: 8px 0 2.4rem;
+}
+
+#primary p {
+  width: 38.2rem;
+  color: var(--platform-aliases-background);
+  font-size: 1.6rem;
+  line-height: 160%;
+}
+
+#secundary {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  padding: 0 0 4rem 2.2rem;
+
+}
+
+#secundary a {
+  text-decoration: none;
+}
+
+#secundary figure {
+  display: flex;
+  gap: 1.6rem;
+
+}
+
+#secundary img {
+  border-radius: 5px;
+ 
+  place-self: center;
+}
+
+#secundary img:hover {
+  filter: hue-rotate(7deg) contrast(80%) saturate(200%);
+}
+
+#secundary h2 {
+  color: var(--platform-aliases-shape-principal);
+  font-size: 1.8rem;
+  font-weight: bold;
+  
+
+  padding-bottom: .1rem;
+}
+
+#secundary p {
+  color: var(--platform-aliases-background);
+  font-size: 1.4rem;
+  line-height: 160%;
+
+  width: 21.5rem;
+}
+
+footer {
+  color: var(--white);
+  font-size: 1.6rem;
+  font-weight: 600;
+
+  padding: 1.6rem;
+  text-align: center;
+
+  --start-y: 100%;
+  animation: move .8s;
+}
+
+@keyframes move {
+  from {
+    transform:  translateY(var(--start-y));
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  } 
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@media (min-width: 700px) {
+  .container {
+    max-width: 1440px;
+    padding-inline: 11.2rem;
+  }
+  
+  header {
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    width: 100%;
+  }
+  
+  .input-wrapper input {
+    width: 100%;
+  }
+  
+  main .container {
+    display: grid;
+    grid-template-areas: 
+    "A B";
+  }
+
+  #primary figcaption {
+    padding-left: 0;
+
+    display: grid;
+    grid-template-areas: 
+    "A B"
+    "C C" ;
+  }
+
+  #primary h1, #feedback {
+    padding-block: 3.1rem;
+  }
+
+  #feedback {
+     justify-self: end;
+  }
+  
+  #primary p {
+    width: 100%;
+    grid-area: C;
+    padding-bottom: 4.0rem;
+  }
+
+  #secundary {
+    padding: 0 0 0 3.4rem;
+  }
+
+  #primary,
+  #secundary h1 {
+    padding-top: 4.4rem;
+  }
+}
